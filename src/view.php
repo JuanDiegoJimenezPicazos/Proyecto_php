@@ -1,19 +1,18 @@
-<?php session_start(); // Solo se pone si se desea usar $_SESSION?>
+<?php 
+session_start(); // Solo se pone si se desea usar $_SESSION
 
 
-<?php
+
 if(!isset($_SESSION['logged'])) {
 	header('Location: login.php');
 }
 // Para saber si no ha iniciado sesión redirigirlo a login
-?>
-
-<?php
 //including the database connection file
 include_once("config.php");
 
 //fetching data in descending order (lastest entry first)
-$result = mysqli_query($mysqli, "SELECT * FROM products WHERE login_id=".$_SESSION['id']." ORDER BY id DESC");
+//$result = mysqli_query($mysqli, "SELECT * FROM products WHERE login_id=".$_SESSION['id']." ORDER BY id DESC");
+$result = $mysqli->query("SELECT * FROM products WHERE login_id=".$_SESSION['id']." ORDER BY id DESC");
 ?>
 
 <!DOCTYPE html>
@@ -44,7 +43,8 @@ $result = mysqli_query($mysqli, "SELECT * FROM products WHERE login_id=".$_SESSI
 		<?php
 		//Se crea un array asociativo para guardar cada fila
 		//mysqli_fetch saca cada fila de la consulta guardada en result
-		while($row = mysqli_fetch_array($result)) {		
+		//while($row = mysqli_fetch_array($result)) {	
+		while($row = $result->fetch_array()) {	
 			echo "<tr>";
 			echo "<td>".$row['name']."</td>";
 			echo "<td>".$row['qty']."</td>";

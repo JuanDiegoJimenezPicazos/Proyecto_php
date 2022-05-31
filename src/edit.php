@@ -91,11 +91,6 @@ while($row = $result->fetch_array())
 			<input type="number" class="form-control" name="price" value="<?php echo $price;?>">
 		</div>
 
-		<div class="form-group">
-			<label for="price">Price</label>
-			<input type="number" class="form-control" name="price" value="<?php echo $price;?>">
-		</div>
-
 		<input type="hidden" name="id" value=<?php echo $_GET['id'];?>>
 		
 		<div class="form-group">
