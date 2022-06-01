@@ -1,35 +1,21 @@
-<?php session_start(); ?>
+<?php 
+session_start();
 
-<?php
 if(!isset($_SESSION['logged'])) {
 	header('Location: login.php');
 }
-?>
 
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="UTF-8">	
-	<title>Add Data</title>
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"  crossorigin="anonymous">
-</head>
+include_once("views/header.php");
 
-<body>
-<div class = "container">
-		<div class="jumbotron">
-			<h1 class="display-4">Simple LAMP web app</h1>
-			<p class="lead">Demo app</p>
-		</div>
-			
-
-<?php
 //including the database connection file
 include_once("config.php");
 
-if(isset($_POST['name']) && isset($_POST['qty']) && isset($_POST['price'])) {	
-	$name = $_POST['name'];
-	$qty = $_POST['qty'];
-	$price = $_POST['price'];
+//if(isset($_POST['name']) && isset($_POST['qty']) && isset($_POST['price'])) {
+if(!empty($_POST)){	
+	//Sanemamos los parámetros del formulario
+	$name = $mysqli->real_escape_string($_POST['name']);
+	$qty = $mysqli->real_escape_string($_POST['qty']);
+	$price = $mysqli->real_escape_string($_POST['price']);
 	$loginId = $_SESSION['id'];
 		
 	// checking empty fields
@@ -86,9 +72,9 @@ if(isset($_POST['name']) && isset($_POST['qty']) && isset($_POST['price'])) {
 			echo "<br/><a href='view.php'>View Result</a>";
 		}
 	}
+} else {
+	include_once("views/add.php");
 }
-?>
 
-</div>
-</body>
-</html>
+include_once("views/footer.php");
+?>
