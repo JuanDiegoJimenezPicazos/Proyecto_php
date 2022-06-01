@@ -33,7 +33,7 @@
                 <td><?php echo $product['qty']; ?></td>
                 <td><?php echo $product['price']; ?></td>
                 <td><a class="btn btn-primary" href="edit.php?id=<?php echo $product['id'];?>">Edit</a>
-                <a class="btn btn-primary" href="delete.php?id=<?php echo $product['id']; ?> 
+                <a class="btn btn-primary" href="delete.php?id=<?php echo $product['id']; ?>" 
                 onClick="return confirm('Are you sure you want to delete?')">Delete</a></td>
                 </tr>
             <?php endforeach; ?>

@@ -2,12 +2,12 @@
 //Iniciamos la sesión
 session_start(); // Solo se pone si se desea usar $_SESSION, se utiliza para usar la variable $_SESSION
 
-
 //Comprobamos que el usuario está logeado
 //$_SESSION se utiliza para compartir información entre las diferentes páginas.
 if(!isset($_SESSION['logged'])) {
 	header('Location: login.php'); //Redirecciona a esa página o dirección
 }
+
 // Para saber si no ha iniciado sesión redirigirlo a login
 //including the database connection file
 //Incluimos el archivo de conexión a la bd
